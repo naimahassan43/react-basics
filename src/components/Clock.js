@@ -81,7 +81,7 @@ class Clock extends React.Component {
             change={this.handleClick}
             locale="en-US"
             show={false}
-            enable={false}
+            enable
           />
         ) : (
           <Button change={this.handleClick} locale="bn-BD" show enable />
