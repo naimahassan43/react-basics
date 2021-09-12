@@ -46,22 +46,21 @@ class Clock extends React.Component {
 
   render() {
     const { date, locale } = this.state;
-    let button;
-    if (locale === "bn-BD") {
-      button = (
-        <Button change={this.handleClick} locale="en-US">
-          Click Here
-        </Button>
-      );
-      console.log(button);
-    } else {
-      button = (
-        <Button change={this.handleClick} locale="bn-BD">
-          Click Here
-        </Button>
-      );
-      console.log(button);
-    }
+    // let button;
+    // if (locale === "bn-BD") {
+    //   button = (
+    //     <Button change={this.handleClick} locale="en-US">
+    //       Click Here
+    //     </Button>
+    //   );
+    //   console.log(button);
+    // } else {
+    //   button = (
+    //     <Button change={this.handleClick} locale="bn-BD">
+    //       Click Here
+    //     </Button>
+    //   );
+    // }
     return (
       <div>
         <h1 className="heading">
@@ -74,7 +73,18 @@ class Clock extends React.Component {
         {/* <button type="button" onClick={() => this.handleClick("en-US")}>
           Click Here
         </button> */}
-        {button}
+
+        {/* {button} */}
+
+        {locale === "bn-BD" ? (
+          <Button change={this.handleClick} locale="en-US">
+            Click Here
+          </Button>
+        ) : (
+          <Button change={this.handleClick} locale="bn-BD">
+            Click Here
+          </Button>
+        )}
       </div>
     );
   }
