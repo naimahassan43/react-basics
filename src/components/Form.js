@@ -9,6 +9,10 @@ export default class Form extends React.Component {
   };
 
   handleChange = (e) => {
+    // this.setState({
+    //   [e.target.name]: e.target.value,
+    // });
+
     if (e.target.type === "text") {
       this.setState({
         title: e.target.value,
@@ -29,13 +33,21 @@ export default class Form extends React.Component {
       console.log("Nothing here");
     }
   };
+
+  submitHandler = (e) => {
+    const { title, text, library, isAwesome } = this.state;
+    e.preventDefault();
+    console.log(title, text, library, isAwesome);
+  };
+
   render() {
     const { title, text, library, isAwesome } = this.state;
     return (
       <div>
-        <form>
+        <form onSubmit={this.submitHandler}>
           <h2>The Title is : {title}</h2>
           <input
+            name="title"
             type="text"
             placeholder="Enter Title"
             value={title}
@@ -57,6 +69,9 @@ export default class Form extends React.Component {
             checked={isAwesome}
             onChange={this.handleChange}
           />
+          <br />
+          <br />
+          <input type="submit" value="Submit" />
         </form>
       </div>
     );
