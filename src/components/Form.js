@@ -3,14 +3,24 @@ import React from "react";
 export default class Form extends React.Component {
   state = {
     title: "JavaScript",
+    text: "Javascript is awsome",
   };
 
   handleChange = (e) => {
-    console.log(e.target.value);
-    this.setState({ title: e.target.value });
+    if (e.target.type === "text") {
+      this.setState({
+        title: e.target.value,
+      });
+    } else if (e.target.type === "textarea") {
+      this.setState({
+        text: e.target.value,
+      });
+    } else {
+      console.log("Nothing here");
+    }
   };
   render() {
-    const { title } = this.state;
+    const { title, text } = this.state;
     return (
       <div>
         <form>
@@ -21,6 +31,9 @@ export default class Form extends React.Component {
             value={title}
             onChange={this.handleChange}
           />
+          <br />
+          <br />
+          <textarea name="text" value={text} onChange={this.handleChange} />
         </form>
       </div>
     );
