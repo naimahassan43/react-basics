@@ -1,7 +1,14 @@
 import React from "react";
 
 class Clock extends React.Component {
-  state = { date: new Date() };
+  state = { date: new Date(), locale: "bn-BD" };
+
+  // constructor(props) {
+  //   super(props);
+  //   this.state = { date: new Date(), locale: "bn-BD" };
+  //   //way-2
+  //   this.handleClick = this.handleClick.bind(this);
+  // }
 
   componentDidMount() {
     this.clockTimer = setInterval(() => this.tick(), 1000);
@@ -9,6 +16,27 @@ class Clock extends React.Component {
   componentWillUnmount() {
     clearInterval(this.clockTimer);
   }
+  //way-1: this problem solved-> best practice
+  // handleClick = () => {
+  //   this.setState({
+  //     locale: "en-US",
+  //   });
+  // };
+
+  //way-2:bind-- using constructor
+  // handleClick() {
+  //   this.setState({
+  //     locale: "en-US",
+  //   });
+  // }
+
+  //way-3: jodi parameterm thake, bind use kora jay
+  handleClick = (locale) => {
+    this.setState({
+      locale,
+    });
+  };
+
   tick() {
     this.setState({
       date: new Date(),
@@ -16,12 +44,20 @@ class Clock extends React.Component {
   }
 
   render() {
+    const { date, locale } = this.state;
     return (
-      <h1 className="heading">
-        <span className="text">
-          It is {this.state.date.toLocaleTimeString(this.props.locale)}
-        </span>
-      </h1>
+      <div>
+        <h1 className="heading">
+          <span className="text">It is {date.toLocaleTimeString(locale)}</span>
+        </h1>
+        {/* <button onClick={this.handleClick}>Click Here</button> */}
+        {/* //way-3 */}
+        {/* <button onClick={this.handleClick.bind(this,'en-US')}>Click Here</button> */}
+        {/* //bind avoid kore parameter send korte chaile */}
+        <button type="button" onClick={() => this.handleClick("en-US")}>
+          Click Here
+        </button>
+      </div>
     );
   }
 }
