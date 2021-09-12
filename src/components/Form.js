@@ -3,7 +3,8 @@ import React from "react";
 export default class Form extends React.Component {
   state = {
     title: "JavaScript",
-    text: "Javascript is awsome",
+    text: "Javascript is awesome",
+    library: "React",
   };
 
   handleChange = (e) => {
@@ -15,12 +16,16 @@ export default class Form extends React.Component {
       this.setState({
         text: e.target.value,
       });
+    } else if (e.target.type === "select-one") {
+      this.setState({
+        library: e.target.value,
+      });
     } else {
       console.log("Nothing here");
     }
   };
   render() {
-    const { title, text } = this.state;
+    const { title, text, library } = this.state;
     return (
       <div>
         <form>
@@ -34,6 +39,12 @@ export default class Form extends React.Component {
           <br />
           <br />
           <textarea name="text" value={text} onChange={this.handleChange} />
+          <br />
+          <br />
+          <select value={library} onChange={this.handleChange}>
+            <option value="React">React</option>
+            <option value="Angular">Angular</option>
+          </select>
         </form>
       </div>
     );
