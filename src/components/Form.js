@@ -5,6 +5,7 @@ export default class Form extends React.Component {
     title: "JavaScript",
     text: "Javascript is awesome",
     library: "React",
+    isAwesome: true,
   };
 
   handleChange = (e) => {
@@ -20,12 +21,16 @@ export default class Form extends React.Component {
       this.setState({
         library: e.target.value,
       });
+    } else if (e.target.type === "checkbox") {
+      this.setState({
+        isAwesome: e.target.checked,
+      });
     } else {
       console.log("Nothing here");
     }
   };
   render() {
-    const { title, text, library } = this.state;
+    const { title, text, library, isAwesome } = this.state;
     return (
       <div>
         <form>
@@ -45,6 +50,13 @@ export default class Form extends React.Component {
             <option value="React">React</option>
             <option value="Angular">Angular</option>
           </select>
+          <br />
+          <br />
+          <input
+            type="checkbox"
+            checked={isAwesome}
+            onChange={this.handleChange}
+          />
         </form>
       </div>
     );
