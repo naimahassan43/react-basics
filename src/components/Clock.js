@@ -31,7 +31,7 @@ class Clock extends React.Component {
   //   });
   // }
 
-  //way-3: jodi parameterm thake, bind use kora jay
+  //way-3: jodi parameter thake, bind use kora jay
   handleClick = (locale) => {
     this.setState({
       locale,
@@ -45,8 +45,23 @@ class Clock extends React.Component {
   }
 
   render() {
-    console.log("Clock component rendered");
     const { date, locale } = this.state;
+    let button;
+    if (locale === "bn-BD") {
+      button = (
+        <Button change={this.handleClick} locale="en-US">
+          Click Here
+        </Button>
+      );
+      console.log(button);
+    } else {
+      button = (
+        <Button change={this.handleClick} locale="bn-BD">
+          Click Here
+        </Button>
+      );
+      console.log(button);
+    }
     return (
       <div>
         <h1 className="heading">
@@ -59,10 +74,7 @@ class Clock extends React.Component {
         {/* <button type="button" onClick={() => this.handleClick("en-US")}>
           Click Here
         </button> */}
-
-        <Button change={this.handleClick} locale="en-US">
-          Click Here
-        </Button>
+        {button}
       </div>
     );
   }
